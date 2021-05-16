@@ -30,7 +30,5 @@ public class DetailViewController {
   private Button closeButton;
 
   @FXML
-  void handleCloseButton(ActionEvent event) {
-
-  }
+  void handleCloseButton(ActionEvent event) { }
 }

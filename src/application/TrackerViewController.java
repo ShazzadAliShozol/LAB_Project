@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -245,14 +246,24 @@ public class TrackerViewController {
   
   @FXML
   void handleShowDetailsButton(ActionEvent event) {
-    try{
-      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DetailVieww.fxml"));
-      Pane root = (Pane)fxmlLoader.load();
-      
-      
-    }catch (Exception exception)
+    this.indexNumber = billsListView.getSelectionModel().getSelectedIndex();
+    if(indexNumber != -1)
     {
-      exception.getMessage();
+      InfoOfBillClass infoOfBillClass = this.billsListView.getItems().get(this.indexNumber);
+      try{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DetailView.fxml"));
+        Pane root = (Pane)fxmlLoader.load();
+        DetailViewController detailViewController = fxmlLoader.getController();
+        detailViewController.transferObject(infoOfBillClass);
+        Scene detailViewScene = new Scene(root);
+        Stage primaryStage = (Stage) this.showDetailsButton.getScene().getWindow();
+        primaryStage.setScene(detailViewScene);
+        primaryStage.setTitle("Detailed Information Window");
+        primaryStage.show();
+      }catch (Exception exception)
+      {
+        exception.getMessage();
+      }
     }
   
   }

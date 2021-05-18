@@ -19,7 +19,6 @@ import utilitiesPackage.Serializer;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TrackerViewController {
   
@@ -159,7 +158,8 @@ public class TrackerViewController {
       this.resetUI();
       billsListView.getSelectionModel().select(-1);
     } catch (Exception exception) {
-      System.err.println(exception.getMessage());
+      Stage stage = (Stage) this.saveButton.getScene().getWindow();
+      ErrorViewUtility.showErrorMessageDialogueBox(stage, exception.getMessage());
     }
 
   }
@@ -197,7 +197,8 @@ public class TrackerViewController {
       
     }catch (Exception exception)
     {
-      exception.getMessage();
+      Stage stage = (Stage) this.saveButton.getScene().getWindow();
+      ErrorViewUtility.showErrorMessageDialogueBox(stage, exception.getMessage());
     }
   
   }
@@ -218,18 +219,23 @@ public class TrackerViewController {
         double gasBill = infoOfBillClass.getGasBill();
         this.pathToPictureFile = infoOfBillClass.getPathToPicture();
         
-        editOrUpadteUi( firstName,  lastName,gender,  localDate, elecBill,
+        editOrUpdateUi( firstName,  lastName,gender,  localDate, elecBill,
                      waterBill, gasBill);
+      }
+      else
+      {
+        throw new Exception("Select Something From The List First.");
       }
     }catch (Exception exception)
     {
-      exception.printStackTrace();
+      Stage stage = (Stage) this.saveButton.getScene().getWindow();
+      ErrorViewUtility.showErrorMessageDialogueBox(stage, exception.getMessage());
     }
     
     
   
   }
-  public void editOrUpadteUi(String firstName, String lastName, String gender, LocalDate localDate,double elecBill,
+  public void editOrUpdateUi(String firstName, String lastName, String gender, LocalDate localDate, double elecBill,
                              double waterBill, double gasBill)
   {
     this.firstNameTextField.setText(firstName);
@@ -262,8 +268,13 @@ public class TrackerViewController {
         primaryStage.show();
       }catch (Exception exception)
       {
-        exception.getMessage();
+        Stage stage = (Stage) this.saveButton.getScene().getWindow();
+        ErrorViewUtility.showErrorMessageDialogueBox(stage, exception.getMessage());
       }
+    }else
+    {
+      Stage stage = (Stage) this.saveButton.getScene().getWindow();
+      ErrorViewUtility.showErrorMessageDialogueBox(stage, "Select Something From The List First.");
     }
   
   }

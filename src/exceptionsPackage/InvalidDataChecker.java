@@ -7,8 +7,24 @@ public class InvalidDataChecker {
                                     String electricBill, String waterBill, String gasBill, String pathToPicture) throws Exception {
     if (firstName == null || firstName.length() < 3)
       throw new Exception("First Name cannot be less than three characters.");
+    else {
+      for (int i=0; i<firstName.length(); i++) {
+        if (Character.isLetter(firstName.charAt(i)) || Character.isSpaceChar(firstName.charAt(i)))
+          continue;
+        else
+          throw new Exception("First name cannot contain numbers or special characters.");
+      }
+    }
     if (lastName == null || lastName.length() < 3)
       throw new Exception("Last Name cannot be less than three characters.");
+    else {
+      for (int i=0; i<lastName.length(); i++) {
+        if (Character.isLetter(lastName.charAt(i)) || Character.isSpaceChar(lastName.charAt(i)))
+          continue;
+        else
+          throw new Exception("Last name cannot contain numbers or special characters.");
+      }
+    }
     if (gender == null)
       throw new Exception("Gender selection empty.");
     if (dateOfBilling == null)

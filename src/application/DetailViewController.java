@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -79,10 +78,10 @@ public class DetailViewController {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
     String formattedDate = localDate.format(formatter);
     this.dateOfBilling.setText(formattedDate);
-    this.electricityBillLabel.setText(String.valueOf(infoOfBillClass.getElectricBill()) + "tk");
-    this.waterBillLabel.setText(String.valueOf(infoOfBillClass.getWaterBill()) + "tk");
-    this.gasBillLabel.setText(String.valueOf(infoOfBillClass.getGasBill()) + "tk");
-    this.totalAmountLabel.setText(String.valueOf(infoOfBillClass.getTotalAmount()) + "tk");
+    this.electricityBillLabel.setText(String.valueOf(infoOfBillClass.getElectricBill()) + " tk");
+    this.waterBillLabel.setText(String.valueOf(infoOfBillClass.getWaterBill()) + " tk");
+    this.gasBillLabel.setText(String.valueOf(infoOfBillClass.getGasBill()) + " tk");
+    this.totalAmountLabel.setText(String.format("%.2f", infoOfBillClass.getTotalAmount()) + " tk");
     String pictureAddress = "file://" + infoOfBillClass.getPathToPicture();
     Image image = new Image(pictureAddress);
     this.userPicture.setImage(image);

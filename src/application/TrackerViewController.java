@@ -280,7 +280,7 @@ public class TrackerViewController {
   }
   
   public void initialize() {
-    this.pathname = "./database.bin";
+    this.pathname = "./bill_database.bin";
     this.listOfBills = Serializer.deserialize(pathname);
     if (this.listOfBills == null)
       this.listOfBills = new ArrayList<>();
